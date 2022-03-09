@@ -1,0 +1,8 @@
+timestamp,type,fiat,in_amt,in_token,in_token_id,in_token_from,out_amt,out_token,out_token_id,out_token_to,fees,account,op
+2021-07-27T00:01:01Z,transfer,,,,,,1.00142,XTZ,,tz1N3xSSLguSVLYMCeNG7e3oiDfPnc6FnQip,0.00142,coinbase,oo8MZJPRdARPfkwMSRryh32bG71z3ykLKyTsJPsnxLjvqqiivMj
+2021-07-27T00:08:01Z,receive,"39,839.38",500,BTC,,external,,,,,,coinbase,
+2021-08-02T17:33:13Z,trade,"38,411.34",10000,XTZ,,coinbase,500,BTC,,coinbase,,coinbase,
+2021-08-02T17:41:03Z,trade:fiat-out,12.5,40,XTZ,,coinbase,500,USD,,coinbase,,coinbase,
+2021-08-24T13:17:06Z,trade:fiat-in,10,1000,USD,,coinbase,100,XTZ,,coinbase,,coinbase,
+2021-09-11T11:56:18Z,interest,6.83745,0.7,XTZ,,coinbase,,,,,,coinbase,
+2021-09-18T11:56:18Z,transfer,,10000,XTZ,,tz1N3xSSLguSVLYMCeNG7e3oiDfPnc6FnQip,,,,,,coinbase pro,onunMEHFMAMCL8QF2HbdmkfG8yw8BRVN6A7JPisiMzEsp15euH8

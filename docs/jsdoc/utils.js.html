@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>utils.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-classification.html">classification</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-classification.html#~classifyOperationGroup">classifyOperationGroup</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-classification.html#~classifyOperationGroups">classifyOperationGroups</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-collation.html">collation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-collation.html#~collate">collate</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-collection.html">collection</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-collection.html#~downloadAllHashesAndTokens">downloadAllHashesAndTokens</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-collection.html#~downloadAllOperationGroups">downloadAllOperationGroups</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-constants.html">constants</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-csv_conversion.html">csv/conversion</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-csv_conversion.html#~operationGroupsToRows">operationGroupsToRows</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-csv_io.html">csv/io</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-csv_io.html#~read">read</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-csv_io.html#~write">write</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-gains.html">gains</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-gains.html#~generateReport">generateReport</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-income.html">income</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-income.html#~summarize">summarize</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-json_io.html">json/io</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-json_io.html#~read">read</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-json_io.html#~write">write</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-tzkt_download.html">tzkt/download</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-tzkt_download.html#~fetchAllHashesAndTokens">fetchAllHashesAndTokens</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-tzkt_download.html#~fetchAllOperations">fetchAllOperations</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-tzkt_http.html">tzkt/http</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-utils.html">utils</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~calculateYearDateRanges">calculateYearDateRanges</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~chunksOf">chunksOf</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~dedupe">dedupe</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~isKT">isKT</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~isTimestampInYear">isTimestampInYear</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~isTz">isTz</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~move">move</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~range">range</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~strictAccessProxy">strictAccessProxy</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">utils.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module utils */
+const delay = async (millis) =>
+  new Promise((resolve) => setTimeout(resolve, millis));
+
+/**
+ * Create array of arrays of size
+ */
+const chunksOf = (arr, size) => {
+  const result = [];
+  while (arr.length > 0) {
+    const chunk = arr.splice(0, size);
+    result.push(chunk);
+  }
+  return result;
+};
+
+/**
+ * Remove duplicates from array, based on value of object property
+ */
+const dedupe = (arr, key) => {
+  let deDuped = [];
+  let keys = {};
+  for (const i of arr) {
+    if (keys[i[key]] === undefined) {
+      deDuped.push(i);
+    }
+    keys[i[key]] = true;
+  }
+  return deDuped;
+};
+
+/**
+ * In-place item move for array
+ */
+const move = (list, from, to) => {
+  const f = list[from];
+  list.splice(from, 1);
+  if (to >= list.length) {
+    list.push(f);
+  } else if (to &lt; 0) {
+    list.unshift(f);
+  } else {
+    list.splice(to, 0, f);
+  }
+};
+
+/**
+ * Is an address a contract?
+ */
+const isKT = (addr) => addr.startsWith("KT");
+
+/**
+ * Is an address an account?
+ */
+const isTz = (addr) => addr.startsWith("tz");
+
+/**
+ * Create object that will throw an error when accessing missing properties
+ *
+ * @param {Object} obj
+ *
+ * @returns {Object}
+ */
+const strictAccessProxy = (obj) => {
+  // thanks for the idea SO https://stackoverflow.com/a/50021383
+  return new Proxy(obj, {
+    get: (obj, prop) => {
+      if (prop in obj) {
+        return obj[prop];
+      } else {
+        throw new Error(`${prop.toString()} does not exist!`);
+      }
+    },
+  });
+};
+
+/**
+ * Simple int range
+ *
+ * @param {Number} start
+ * @param {Number} end
+ * @param {Number} by - (optional, default 1) increment step
+ */
+const range = (start, end, by = 1) => {
+  if (start === end) return [start];
+  return [start, ...range(start + by, end)];
+};
+
+/**
+ * Calculate year date ranges from specified year to current year
+ *
+ * @param {Number} startYear - first year
+ * @param {Function} getCurrentYear - (optional) function to return override year
+ *
+ * @returns {Object}
+ * */
+const calculateYearDateRanges = (
+  startYear,
+  getCurrentYear = () => new Date().getFullYear()
+) => {
+  const currentYear = getCurrentYear();
+  return range(startYear, currentYear).map((year) => {
+    const start = `${year}-01-01`;
+    const end = `${year + 1}-01-01`;
+    return {
+      year,
+      start,
+      end,
+    };
+  });
+};
+
+/**
+ * Test if timestamp is in a given year
+ *
+ * @param {String} timestamp -  ISO 8601 timestamp
+ * @param {Number} year
+ *
+ * @returns {Boolean}
+ */
+const isTimestampInYear = (timestamp, year) => {
+  const start = Date.parse(`${year}-01-01`);
+  const end = Date.parse(`${year + 1}-01-01`);
+  const t = Date.parse(timestamp);
+
+  return start &lt;= t &amp;&amp; t &lt; end;
+};
+
+export default {
+  isTimestampInYear,
+  calculateYearDateRanges,
+  range,
+  strictAccessProxy,
+  isKT,
+  isTz,
+  move,
+  dedupe,
+  chunksOf,
+  delay,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Thu Apr 07 2022 14:55:35 GMT-0400 (Eastern Daylight Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

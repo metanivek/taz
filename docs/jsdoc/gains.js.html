@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>gains.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-classification.html">classification</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-classification.html#~classifyOperationGroup">classifyOperationGroup</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-classification.html#~classifyOperationGroups">classifyOperationGroups</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-collation.html">collation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-collation.html#~collate">collate</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-collection.html">collection</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-collection.html#~downloadAllHashesAndTokens">downloadAllHashesAndTokens</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-collection.html#~downloadAllOperationGroups">downloadAllOperationGroups</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-constants.html">constants</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-csv_conversion.html">csv/conversion</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-csv_conversion.html#~operationGroupsToRows">operationGroupsToRows</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-csv_io.html">csv/io</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-csv_io.html#~read">read</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-csv_io.html#~write">write</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-gains.html">gains</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-gains.html#~generateReport">generateReport</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-income.html">income</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-income.html#~summarize">summarize</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-json_io.html">json/io</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-json_io.html#~read">read</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-json_io.html#~write">write</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-tzkt_download.html">tzkt/download</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-tzkt_download.html#~fetchAllHashesAndTokens">fetchAllHashesAndTokens</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-tzkt_download.html#~fetchAllOperations">fetchAllOperations</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-tzkt_http.html">tzkt/http</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-utils.html">utils</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~calculateYearDateRanges">calculateYearDateRanges</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~chunksOf">chunksOf</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~dedupe">dedupe</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~isKT">isKT</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~isTimestampInYear">isTimestampInYear</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~isTz">isTz</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~move">move</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~range">range</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~strictAccessProxy">strictAccessProxy</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">gains.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module gains */
+import constants from "./constants.js";
+import csvIO from "./csv/io.js";
+
+const { CSV_HEADERS: H, TYPE, XTZ } = constants;
+
+const makeFifoLedger = (asset) => {
+  return {
+    asset,
+    amounts: [],
+    dispossesed: [],
+  };
+};
+
+const add = (ledger, amount, fiat, date) => {
+  ledger.amounts.push({
+    amount,
+    fiat,
+    date,
+  });
+  ledger.amounts = ledger.amounts.sort((a, b) => a.amount - b.amount);
+  return ledger;
+};
+
+const remove = (ledger, amount, fiat, date, type) => {
+  let remaining = amount;
+  while (remaining > Number.EPSILON) {
+    const top = ledger.amounts.splice(0, 1)[0];
+    if (top === undefined) {
+      console.log("undefined", ledger, amount, remaining);
+      break;
+    }
+    let subamount;
+    if (top.amount >= remaining) {
+      subamount = remaining;
+      top.amount = top.amount - subamount;
+      ledger.amounts.splice(0, 0, top);
+    } else {
+      subamount = remaining - top.amount;
+    }
+    const proceeds = subamount * fiat;
+    const basis = subamount * top.fiat;
+    const gains = proceeds - basis;
+    ledger.dispossesed.push({
+      type,
+      asset: ledger.asset,
+      amount: subamount,
+      acquired: top.date,
+      basis,
+      dispossesed: date,
+      proceeds,
+      gains,
+      days: (Date.parse(date) - Date.parse(top.date)) / (1000 * 3600 * 24),
+    });
+    remaining -= subamount;
+  }
+};
+
+/**
+ * Generates gains and losses report
+ *
+ * @param {Array} collatedRows - Rows from {@link module:collation~collate}
+ *
+ * @returns {array} rows of gains and losses
+ * */
+const generateReport = async (year, collatedRows) => {
+  const ledgers = {};
+  const makeTokenKey = (token, tokenId) => {
+    if (tokenId === "") {
+      return token;
+    } else {
+      return `${token}-${tokenId}`;
+    }
+  };
+  for (const row of collatedRows) {
+    const t = row[H.TYPE];
+    const date = row[H.TIMESTAMP];
+    const i = row[H.IN_TOKEN];
+    const iId = row[H.IN_TOKEN_ID];
+    const o = row[H.OUT_TOKEN];
+    const oId = row[H.OUT_TOKEN_ID];
+    const fiat = row[H.FIAT];
+    const iKey = makeTokenKey(i, iId);
+    const oKey = makeTokenKey(o, oId);
+
+    // xtz or token in
+    if (
+      t === TYPE.RECEIVE ||
+      t === TYPE.RECEIVE_TOKEN ||
+      t === TYPE.TRADE_FIAT_OUT ||
+      t === TYPE.SALE ||
+      t === TYPE.SALE_RESALE ||
+      t === TYPE.AIRDROP
+    ) {
+      if (i !== "" &amp;&amp; ledgers[iKey] === undefined) {
+        ledgers[iKey] = makeFifoLedger(iKey);
+      }
+      let inFiat = 0;
+      const inIsXTZ = i === XTZ;
+      if (inIsXTZ) {
+        inFiat = fiat;
+      }
+      add(ledgers[iKey], parseFloat(row[H.IN_AMT]), inFiat, date);
+
+      // token out
+      if (t === TYPE.SALE_RESALE) {
+        if (o !== "" &amp;&amp; ledgers[oKey] === undefined) {
+          ledgers[oKey] = makeFifoLedger(oKey);
+        }
+        let inAmt = parseFloat(row[H.IN_AMT]);
+        let outAmt = parseFloat(row[H.OUT_AMT]);
+        const outFiat = (fiat * inAmt) / outAmt;
+        remove(ledgers[oKey], outAmt, outFiat, date, t);
+      }
+    }
+
+    // xtz out
+    if (t === TYPE.TRADE_FIAT_IN) {
+      if (o !== "" &amp;&amp; ledgers[oKey] === undefined) {
+        ledgers[oKey] = makeFifoLedger(oKey);
+      }
+      remove(ledgers[oKey], parseFloat(row[H.OUT_AMT]), fiat, date, t);
+    }
+
+    // token trade
+    if (t === TYPE.BUY || t === TYPE.TRADE) {
+      if (i !== "" &amp;&amp; ledgers[iKey] === undefined) {
+        ledgers[iKey] = makeFifoLedger(iKey);
+      }
+      if (o !== "" &amp;&amp; ledgers[oKey] === undefined) {
+        ledgers[oKey] = makeFifoLedger(oKey);
+      }
+
+      const inIsXTZ = i === XTZ;
+      const outIsXTZ = o === XTZ;
+      let inAmt = parseFloat(row[H.IN_AMT]);
+      let outAmt = parseFloat(row[H.OUT_AMT]);
+      let inFiat = 0;
+      let outFiat = 0;
+      if (inIsXTZ) {
+        inFiat = fiat;
+        outFiat = (fiat * inAmt) / outAmt;
+      } else if (outIsXTZ) {
+        inFiat = (fiat * outAmt) / inAmt;
+        outFiat = fiat;
+      } else {
+        console.error("token-to-token trade or buy not supported yet");
+        continue;
+      }
+
+      add(ledgers[iKey], inAmt, inFiat, date);
+      remove(ledgers[oKey], outAmt, outFiat, date, t);
+    }
+  }
+  const dispossesedLedgers = Object.values(ledgers).filter(
+    (l) => l.dispossesed.length > 0
+  );
+
+  const allRows = dispossesedLedgers.reduce((acc, l) => {
+    return acc.concat(l.dispossesed);
+  }, []);
+
+  await csvIO.write(`gains/${year}-gains.csv`, allRows);
+
+  // console.log(dispossesedLedgers.map((l) => l.dispossesed));
+};
+
+export default {
+  generateReport,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Thu Apr 07 2022 14:55:35 GMT-0400 (Eastern Daylight Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

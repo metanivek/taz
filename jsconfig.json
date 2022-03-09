@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es2018",
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "checkJs": true
+  },
+  "exclude": ["node_modules"]
+}

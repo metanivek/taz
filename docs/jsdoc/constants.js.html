@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>constants.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-classification.html">classification</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-classification.html#~classifyOperationGroup">classifyOperationGroup</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-classification.html#~classifyOperationGroups">classifyOperationGroups</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-collation.html">collation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-collation.html#~collate">collate</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-collection.html">collection</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-collection.html#~downloadAllHashesAndTokens">downloadAllHashesAndTokens</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-collection.html#~downloadAllOperationGroups">downloadAllOperationGroups</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-constants.html">constants</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-csv_conversion.html">csv/conversion</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-csv_conversion.html#~operationGroupsToRows">operationGroupsToRows</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-csv_io.html">csv/io</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-csv_io.html#~read">read</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-csv_io.html#~write">write</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-gains.html">gains</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-gains.html#~generateReport">generateReport</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-income.html">income</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-income.html#~summarize">summarize</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-json_io.html">json/io</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-json_io.html#~read">read</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-json_io.html#~write">write</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-tzkt_download.html">tzkt/download</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-tzkt_download.html#~fetchAllHashesAndTokens">fetchAllHashesAndTokens</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-tzkt_download.html#~fetchAllOperations">fetchAllOperations</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-tzkt_http.html">tzkt/http</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-utils.html">utils</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~calculateYearDateRanges">calculateYearDateRanges</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~chunksOf">chunksOf</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~dedupe">dedupe</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~isKT">isKT</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~isTimestampInYear">isTimestampInYear</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~isTz">isTz</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~move">move</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~range">range</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~strictAccessProxy">strictAccessProxy</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">constants.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module constants */
+import utils from "./utils.js";
+
+const XTZ = "XTZ";
+const BURN_ADDR = "tz1burnburnburnburnburnburnburjAYjjX";
+
+const FXHASH_GENTK = "KT1KEa8z6vWXDJrVqtMrAeDVzsvxat3kHaCE"; // TODO: update when v2 launches
+const COMMON_SKELES = "KT1HZVd9Cjc2CMe3sQvXgbxhpJkdena21pih";
+
+const OBJKT_ENGLISH_AUCTIONS = [
+  "KT1XjcRq5MLAzMKQ3UHsrue2SeU2NbxUrzmU", // v1
+  "KT18p94vjkkHYY3nPmernmgVR7HdZFzE7NAk", // v2
+];
+
+const OBJKT_MARKETPLACES = [
+  "KT1FvqJwEDWb1Gwc55Jd1jjTHRVWbYKUUpyq", // v1
+  "KT1WvzYHCNBvDSdwafTHv7nJ1dWmZ8GCYuuC", // v2
+];
+
+// manually track combination of entrypoint and contracts
+// that are for minting your own nfts
+// note: this is different than minting when buying *another* nft
+// yeah, confusing :D
+const MINT_ENTRYPOINTS = ["mint", "mint_OBJKT", "mint_artist", "mint_issuer"];
+const MINT_CONTRACTS = [
+  "KT1Hkg5qeNhfwpKW4fXvq7HGZB9z2EnmCCA9", // hen minter
+  "KT1Aq4wWmVanpQhq4TTfjZXB5AjFpx15iQMM", // objkt.com minter
+  "KT1AEVuykWeuuFX7QkEAMNtffzwhe1Z98hJS", // fx(hash) issuer v1
+  "KT1XCoGnfupWk7Sp8536EfrxcP73LmT68Nyr", // fx(hash) issuer v2
+];
+
+const TYPE = utils.strictAccessProxy({
+  UNKNOWN: "unknown",
+  RECEIVE: "receive", // XTZ in, nothing out
+  SEND: "send", // XTZ out, nothing in
+  BUY: "buy", // XTZ out, token in
+  TRADE: "trade", // token out, token in
+  TRADE_CEX: "trade:cex", // token in, token out; no level
+  AIRDROP: "airdrop", // token in, nothing out (not initiated your account)
+  MINT: "mint", // token in (that one of your addresses created)
+  RECEIVE_TOKEN: "receive:token", // nothing out, token in
+  SEND_TOKEN_KT: "send:token:kt", // nothing in, token out (to contract)
+  SEND_TOKEN_TZ: "send:token:tz", // nothing in, token out (to account)
+  BURN: "send:token:burn", // nothing in, token to canoncial burn address
+  SALE: "sale", // XTZ in, token out
+  SALE_RESALE: "sale:resale", // XTZ in, token out (for token you bought)
+  TRANSFER: "transfer", // XTZ in | XTZ out; your account
+  TRANSFER_TOKEN: "transfer:token", // token in, nothing out | nothing in, token out; your account
+  // delegation
+  DELEGATION: "delegation",
+  // offers
+  OFFER: "offer",
+  OFFER_RETRACT: "offer:retract",
+  OFFER_FULFILL: "offer:fulfill",
+  // auctions
+  AUCTION_BID: "auction:bid", // token/XTZ out, pseudo bid token id in
+  AUCTION_OUTBID: "auction:outbid", // token/XTZ in due to lost bid
+  AUCTION_SETTLE: "auction:settle", // token in, pseudo bid token id out
+  // contract interaction types
+  CONTRACT_CALL: "contract-call",
+  ORIGINATION: "origination",
+  // cex types
+  TRADE_FIAT_OUT: "trade:fiat-out", // token in, fiat out
+  TRADE_FIAT_IN: "trade:fiat-in", // fiat in, token out
+  INTEREST: "interest", // XTZ in, a reward
+  // used when collating all transactions as a marker to remove
+  REMOVE: "remove",
+});
+
+// tzkt currencies supported for quotes
+const CURRENCIES = ["Btc", "Eur", "Usd", "Cny", "Jpy", "Krw", "Eth", "Gbp"];
+
+const CSV_HEADERS = utils.strictAccessProxy({
+  TIMESTAMP: "timestamp",
+  TYPE: "type",
+  FIAT: "fiat",
+  IN_AMT: "in_amt",
+  IN_TOKEN: "in_token",
+  IN_TOKEN_ID: "in_token_id",
+  IN_TOKEN_FROM: "in_token_from",
+  OUT_AMT: "out_amt",
+  OUT_TOKEN: "out_token",
+  OUT_TOKEN_ID: "out_token_id",
+  OUT_TOKEN_TO: "out_token_to",
+  FEES: "fees",
+  ACCOUNT: "account",
+  LEVEL: "level",
+  OP: "op",
+});
+
+// TODO: extract other string constants
+
+export default {
+  XTZ,
+  BURN_ADDR,
+  FXHASH_GENTK,
+  COMMON_SKELES,
+  OBJKT_ENGLISH_AUCTIONS,
+  OBJKT_MARKETPLACES,
+  TYPE,
+  MINT_ENTRYPOINTS,
+  MINT_CONTRACTS,
+  CSV_HEADERS,
+  CURRENCIES,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Thu Apr 07 2022 14:55:35 GMT-0400 (Eastern Daylight Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

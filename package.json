@@ -1,0 +1,27 @@
+{
+  "name": "tazes",
+  "type": "module",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --coverage",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch",
+    "jsdoc": "jsdoc -c jsdoc.json -r -R README.md src -d docs/jsdoc && jsdoc2md src/*.js > docs/API.md"
+  },
+  "dependencies": {
+    "axios": "^0.26.0",
+    "cross-fetch": "^3.1.4",
+    "dotenv": "^10.0.0",
+    "fast-csv": "^4.3.6",
+    "progress": "^2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-plugin-jest": "^26.1.1",
+    "jest": "^27.5.1",
+    "jest-extended": "^2.0.0",
+    "jsdoc": "^3.6.10",
+    "jsdoc-to-markdown": "^7.1.1",
+    "minami": "^1.2.3"
+  }
+}

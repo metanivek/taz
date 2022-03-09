@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>tzkt/download.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-classification.html">classification</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-classification.html#~classifyOperationGroup">classifyOperationGroup</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-classification.html#~classifyOperationGroups">classifyOperationGroups</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-collation.html">collation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-collation.html#~collate">collate</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-collection.html">collection</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-collection.html#~downloadAllHashesAndTokens">downloadAllHashesAndTokens</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-collection.html#~downloadAllOperationGroups">downloadAllOperationGroups</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-constants.html">constants</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-csv_conversion.html">csv/conversion</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-csv_conversion.html#~operationGroupsToRows">operationGroupsToRows</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-csv_io.html">csv/io</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-csv_io.html#~read">read</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-csv_io.html#~write">write</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-gains.html">gains</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-gains.html#~generateReport">generateReport</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-income.html">income</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-income.html#~summarize">summarize</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-json_io.html">json/io</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-json_io.html#~read">read</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-json_io.html#~write">write</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-tzkt_download.html">tzkt/download</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-tzkt_download.html#~fetchAllHashesAndTokens">fetchAllHashesAndTokens</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-tzkt_download.html#~fetchAllOperations">fetchAllOperations</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-tzkt_http.html">tzkt/http</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-utils.html">utils</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~calculateYearDateRanges">calculateYearDateRanges</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~chunksOf">chunksOf</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~dedupe">dedupe</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~isKT">isKT</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~isTimestampInYear">isTimestampInYear</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~isTz">isTz</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~move">move</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~range">range</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-utils.html#~strictAccessProxy">strictAccessProxy</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">tzkt/download.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module tzkt/download */
+import process from "process";
+import http from "./http.js";
+import utils from "../utils.js";
+
+const LIMIT = 1000;
+const API = "https://api.tzkt.io/v1/";
+
+const get = async (action, params) => {
+  const url = API + action;
+  return http.get(url, params);
+};
+
+const fetchAll = async (fetcher) => {
+  let moreToFetch = true;
+  let offset = 0;
+  let results = [];
+  while (moreToFetch) {
+    const r = await fetcher(offset);
+    moreToFetch = r.length > 0;
+    if (moreToFetch) offset += r.length;
+    results = results.concat(r);
+  }
+  return results;
+};
+
+const fetchTokenTransfers = async (
+  account,
+  startDate,
+  endDate,
+  offset = 0,
+  limit = LIMIT
+) => {
+  const params = {
+    limit,
+    offset,
+    select: "timestamp,transactionId,token,level",
+    "anyof.from.to": account,
+    "timestamp.ge": startDate,
+    "timestamp.lt": endDate,
+    "sort.asc": "level",
+  };
+
+  return get("tokens/transfers", params);
+};
+
+const fetchAllTokenTransfers = async (account, startDate, endDate) => {
+  // bug in TzKT Tokens API that doesn't like future dates (it returns nothing)
+  const todayEndDate = `${new Date().getFullYear()}-${
+    new Date().getMonth() + 1
+  }-${new Date().getDate()}`;
+  const realEndDate = Date.parse(endDate) > Date.now() ? todayEndDate : endDate;
+  return fetchAll(async (offset) => {
+    return fetchTokenTransfers(account, startDate, realEndDate, offset);
+  });
+};
+
+const fetchDelegationHashes = async (
+  { account },
+  startDate,
+  endDate,
+  offset = 0,
+  limit = LIMIT
+) => {
+  const params = {
+    limit,
+    offset,
+    sender: account,
+    status: "applied",
+    select: "hash,id,level",
+    "timestamp.ge": startDate,
+    "timestamp.lt": endDate,
+    "sort.asc": "level",
+  };
+  return get("operations/delegations", params);
+};
+
+const fetchOriginationHashes = async (
+  { account },
+  startDate,
+  endDate,
+  offset = 0,
+  limit = LIMIT
+) => {
+  const params = {
+    limit,
+    offset,
+    sender: account,
+    status: "applied",
+    select: "hash,id,level",
+    "timestamp.ge": startDate,
+    "timestamp.lt": endDate,
+    "sort.asc": "level",
+  };
+  return get("operations/originations", params);
+};
+
+const fetchTransactionHashes = async (
+  { account, transactionIds },
+  startDate,
+  endDate,
+  offset = 0,
+  limit = LIMIT
+) => {
+  const params = {
+    limit,
+    offset,
+    status: "applied",
+    select: "hash,id,level",
+    "timestamp.ge": startDate,
+    "timestamp.lt": endDate,
+    "sort.asc": "level",
+  };
+  if (account) {
+    params["anyof.sender.target"] = account;
+  } else if (transactionIds) {
+    params["id.in"] = transactionIds;
+  } else {
+    console.error("missing parameter", account, transactionIds);
+    process.exit(1);
+  }
+  return get("operations/transactions", params);
+};
+
+const fetchOperation = async (hash, currency) => {
+  return get(`operations/${hash}`, { quote: currency });
+};
+
+/**
+ * Download all hahses and tokens for an account
+ *
+ * @param {String} account
+ * @param {String} startDate - ISO 8601 timestamp (inclusive)
+ * @param {String} endDate - ISO 8601 timestamp (exclusive)
+ *
+ * @returns {Promise&lt;Object>} -
+ */
+const fetchAllHashesAndTokens = async (account, startDate, endDate) => {
+  let transactionHashes = await fetchAll(async (offset) =>
+    fetchTransactionHashes({ account }, startDate, endDate, offset)
+  );
+  const delegationHashes = await fetchAll(async (offset) =>
+    fetchDelegationHashes({ account }, startDate, endDate, offset)
+  );
+  const originationHashes = await fetchAll(async (offset) =>
+    fetchOriginationHashes({ account }, startDate, endDate, offset)
+  );
+  const tokenTransfers = await fetchAllTokenTransfers(
+    account,
+    startDate,
+    endDate
+  );
+  const tokens = utils.dedupe(
+    tokenTransfers.map((r) => {
+      const { token } = r;
+      if (token.metadata === undefined) {
+        console.log("missing metadata", r);
+      }
+      return {
+        address: token.contract.address,
+        standard: token.standard,
+        symbol: token.metadata?.symbol ?? "MISSING",
+        decimals: token.metadata?.decimals ?? 0,
+      };
+    }),
+    "address"
+  );
+
+  const hashesById = transactionHashes.reduce((acc, h) => {
+    acc[h.id] = true;
+    return acc;
+  }, {});
+  const chunkSize = 200;
+  const missingTransactionIds = tokenTransfers.reduce(
+    (acc, { transactionId }) => {
+      if (hashesById[transactionId] === undefined) {
+        acc.push(transactionId);
+      }
+      return acc;
+    },
+    []
+  );
+  const chunkedIds = utils.chunksOf(missingTransactionIds, chunkSize);
+  const missingTransactionHashes = await chunkedIds.reduce(
+    async (aacc, transactionIds) => {
+      const acc = await aacc;
+      const r = await fetchTransactionHashes(
+        { transactionIds },
+        startDate,
+        endDate,
+        0,
+        chunkSize
+      );
+      return acc.concat(r);
+    },
+    []
+  );
+
+  const combined = transactionHashes
+    .concat(delegationHashes)
+    .concat(originationHashes)
+    .concat(missingTransactionHashes);
+  const deduped = utils.dedupe(combined, "hash");
+  const hashes = deduped.sort((a, b) => a.level - b.level).map((t) => t.hash);
+
+  return {
+    hashes,
+    tokens,
+  };
+};
+
+/**
+ * Download operation groups for given hashes, with currency quote
+ *
+ * @param {Array&lt;string>} hashes
+ * @param {String} currency - TzKT compatible currency
+ *
+ * @returns {Promise&lt;Array&lt;Object>>}
+ */
+const fetchAllOperations = async (hashes, currency) => {
+  const chunks = utils.chunksOf(hashes, 2);
+  return chunks.reduce(async (aacc, chunk) => {
+    const acc = await aacc;
+    const ops = await Promise.all(
+      chunk.map(async (hash) => {
+        return await fetchOperation(hash, currency);
+      })
+    );
+    return acc.concat(ops);
+  }, []);
+};
+
+export default { fetchAllHashesAndTokens, fetchAllOperations };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Thu Apr 07 2022 14:55:35 GMT-0400 (Eastern Daylight Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
