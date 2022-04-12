@@ -4,6 +4,8 @@ import csvUtil from "./__utils__/csv.js";
 
 const { TYPE, XTZ } = constants;
 
+process.env.LOCALE = "en-US"; // force for tests
+
 describe("generateReport", () => {
   describe("FIFO", () => {
     test("resale token", () => {
@@ -14,7 +16,7 @@ describe("generateReport", () => {
           in_amt: 1,
           in_token: "COOL",
           in_token_id: 1,
-          timestamp: "2021-08-13",
+          timestamp: "2021-08-13T19:00:00Z",
         }),
         csvUtil.createRow({
           type: TYPE.SALE_RESALE,
@@ -24,21 +26,23 @@ describe("generateReport", () => {
           out_amt: 1,
           out_token: "COOL",
           out_token_id: 1,
-          timestamp: "2021-08-18",
+          timestamp: "2021-08-18T19:00:00Z",
         }),
       ];
 
       expect(gains.generateReport(2021, rows, "FIFO")).toStrictEqual([
         {
-          acquired: "2021-08-13",
-          amount: 1,
-          asset: "COOL-1",
-          basis: 0,
-          dispossessed: "2021-08-18",
-          days: 5,
-          gains: 14,
-          proceeds: 14,
-          type: TYPE.SALE_RESALE,
+          "Date Acquired": "8/13/2021",
+          Amount: 1,
+          "Asset Name": "COOL-1",
+          "Cost Basis": 0,
+          "Date of Disposition": "8/18/2021",
+          "Holding Period (Days)": 5,
+          "Gains (Losses)": 14,
+          Proceeds: 14,
+          "Taz Type": TYPE.SALE_RESALE,
+          "Tax lot ID": "",
+          "Data Source": "Taz",
         },
       ]);
     });
@@ -53,7 +57,7 @@ describe("generateReport", () => {
           in_amt: 3,
           in_token: "TOK",
           in_token_id: 2,
-          timestamp: "2021-08-13",
+          timestamp: "2021-08-13T19:00:00Z",
         }),
         csvUtil.createRow({
           type: TYPE.TRADE,
@@ -63,21 +67,23 @@ describe("generateReport", () => {
           out_amt: 1,
           out_token: "TOK",
           out_token_id: 2,
-          timestamp: "2021-08-18",
+          timestamp: "2021-08-18T19:00:00Z",
         }),
       ];
 
       expect(gains.generateReport(2021, rows, "FIFO")).toStrictEqual([
         {
-          acquired: "2021-08-13",
-          amount: 1,
-          asset: "TOK-2",
-          basis: 0,
-          dispossessed: "2021-08-18",
-          days: 5,
-          gains: 35,
-          proceeds: 35,
-          type: TYPE.TRADE,
+          "Date Acquired": "8/13/2021",
+          Amount: 1,
+          "Asset Name": "TOK-2",
+          "Cost Basis": 0,
+          "Date of Disposition": "8/18/2021",
+          "Holding Period (Days)": 5,
+          "Gains (Losses)": 35,
+          Proceeds: 35,
+          "Taz Type": TYPE.TRADE,
+          "Tax lot ID": "",
+          "Data Source": "Taz",
         },
       ]);
     });
@@ -89,7 +95,7 @@ describe("generateReport", () => {
           fiat: 1,
           in_amt: 1,
           in_token: XTZ,
-          timestamp: "2021-08-13",
+          timestamp: "2021-08-13T19:00:00Z",
         }),
         csvUtil.createRow({
           type: TYPE.TRADE_FIAT_IN,
@@ -98,21 +104,23 @@ describe("generateReport", () => {
           in_token: "Usd",
           out_amt: 0.5,
           out_token: XTZ,
-          timestamp: "2021-08-18",
+          timestamp: "2021-08-18T19:00:00Z",
         }),
       ];
 
       expect(gains.generateReport(2021, rows, "FIFO")).toStrictEqual([
         {
-          acquired: "2021-08-13",
-          amount: 0.5,
-          asset: XTZ,
-          basis: 0.5,
-          dispossessed: "2021-08-18",
-          days: 5,
-          gains: 3,
-          proceeds: 3.5,
-          type: TYPE.TRADE_FIAT_IN,
+          "Date Acquired": "8/13/2021",
+          Amount: 0.5,
+          "Asset Name": XTZ,
+          "Cost Basis": 0.5,
+          "Date of Disposition": "8/18/2021",
+          "Holding Period (Days)": 5,
+          "Gains (Losses)": 3,
+          Proceeds: 3.5,
+          "Taz Type": TYPE.TRADE_FIAT_IN,
+          "Tax lot ID": "",
+          "Data Source": "Taz",
         },
       ]);
     });
@@ -124,27 +132,29 @@ describe("generateReport", () => {
           fiat: 1,
           in_amt: 0.6,
           in_token: XTZ,
-          timestamp: "2021-08-13",
+          timestamp: "2021-08-13T19:00:00Z",
         }),
         csvUtil.createRow({
           type: TYPE.SEND,
           fiat: 2,
           out_amt: 0.6,
           out_token: XTZ,
-          timestamp: "2021-08-15",
+          timestamp: "2021-08-15T19:00:00Z",
         }),
       ];
       expect(gains.generateReport(2021, rows, "FIFO")).toStrictEqual([
         {
-          acquired: "2021-08-13",
-          amount: 0.6,
-          asset: XTZ,
-          basis: 0.6,
-          dispossessed: "2021-08-15",
-          days: 2,
-          gains: 0.6,
-          proceeds: 1.2,
-          type: TYPE.SEND,
+          "Date Acquired": "8/13/2021",
+          Amount: 0.6,
+          "Asset Name": XTZ,
+          "Cost Basis": 0.6,
+          "Date of Disposition": "8/15/2021",
+          "Holding Period (Days)": 2,
+          "Gains (Losses)": 0.6,
+          Proceeds: 1.2,
+          "Taz Type": TYPE.SEND,
+          "Tax lot ID": "",
+          "Data Source": "Taz",
         },
       ]);
     });
@@ -156,14 +166,14 @@ describe("generateReport", () => {
           fiat: 1,
           in_amt: 0.6,
           in_token: XTZ,
-          timestamp: "2021-08-13",
+          timestamp: "2021-08-13T19:00:00Z",
         }),
         csvUtil.createRow({
           type: TYPE.RECEIVE,
           fiat: 1.5,
           in_amt: 2,
           in_token: XTZ,
-          timestamp: "2021-08-15",
+          timestamp: "2021-08-15T19:00:00Z",
         }),
         csvUtil.createRow({
           type: TYPE.BUY,
@@ -173,7 +183,7 @@ describe("generateReport", () => {
           out_amt: 0.5,
           out_token: XTZ,
           fees: 0.1,
-          timestamp: "2021-08-18",
+          timestamp: "2021-08-18T19:00:00Z",
         }),
         csvUtil.createRow({
           type: TYPE.BUY,
@@ -183,7 +193,7 @@ describe("generateReport", () => {
           out_amt: 0.5,
           out_token: XTZ,
           fees: 0.1,
-          timestamp: "2021-08-19",
+          timestamp: "2021-08-19T19:00:00Z",
         }),
       ];
 
@@ -198,7 +208,7 @@ describe("generateReport", () => {
           fiat: 1,
           in_amt: 10,
           in_token: XTZ,
-          timestamp: "2021-08-13",
+          timestamp: "2021-08-13T19:00:00Z",
         }),
         csvUtil.createRow({
           type: TYPE.BUY,
@@ -208,7 +218,7 @@ describe("generateReport", () => {
           out_amt: 0.5,
           out_token: XTZ,
           fees: 0.1,
-          timestamp: "2021-08-18",
+          timestamp: "2021-08-18T19:00:00Z",
         }),
         csvUtil.createRow({
           type: TYPE.SALE_RESALE,
@@ -217,32 +227,36 @@ describe("generateReport", () => {
           in_token: XTZ,
           out_amt: 1,
           out_token: "COOL",
-          timestamp: "2021-08-19",
+          timestamp: "2021-08-19T19:00:00Z",
         }),
       ];
 
       expect(gains.generateReport(2021, rows, "FIFO")).toStrictEqual([
         {
-          acquired: "2021-08-13",
-          amount: 0.5,
-          asset: XTZ,
-          basis: 0.5,
-          dispossessed: "2021-08-18",
-          days: 5,
-          gains: 0.5,
-          proceeds: 1,
-          type: TYPE.BUY,
+          "Date Acquired": "8/13/2021",
+          Amount: 0.5,
+          "Asset Name": XTZ,
+          "Cost Basis": 0.5,
+          "Date of Disposition": "8/18/2021",
+          "Holding Period (Days)": 5,
+          "Gains (Losses)": 0.5,
+          Proceeds: 1,
+          "Taz Type": TYPE.BUY,
+          "Tax lot ID": "",
+          "Data Source": "Taz",
         },
         {
-          acquired: "2021-08-18",
-          amount: 1,
-          asset: "COOL",
-          basis: 0.6,
-          dispossessed: "2021-08-19",
-          days: 1,
-          gains: 2.4,
-          proceeds: 3,
-          type: TYPE.SALE_RESALE,
+          "Date Acquired": "8/18/2021",
+          Amount: 1,
+          "Asset Name": "COOL",
+          "Cost Basis": 0.6,
+          "Date of Disposition": "8/19/2021",
+          "Holding Period (Days)": 1,
+          "Gains (Losses)": 2.4,
+          Proceeds: 3,
+          "Taz Type": TYPE.SALE_RESALE,
+          "Tax lot ID": "",
+          "Data Source": "Taz",
         },
       ]);
     });
@@ -255,14 +269,14 @@ describe("generateReport", () => {
             fiat: 1,
             in_amt: 1,
             in_token: XTZ,
-            timestamp: "2021-08-13",
+            timestamp: "2021-08-13T19:00:00Z",
           }),
           csvUtil.createRow({
             type: TYPE.RECEIVE,
             fiat: 1.5,
             in_amt: 2,
             in_token: XTZ,
-            timestamp: "2021-08-15",
+            timestamp: "2021-08-15T19:00:00Z",
           }),
           csvUtil.createRow({
             type: TYPE.BUY,
@@ -271,21 +285,23 @@ describe("generateReport", () => {
             in_token: "COOL",
             out_amt: 0.5,
             out_token: XTZ,
-            timestamp: "2021-08-18",
+            timestamp: "2021-08-18T19:00:00Z",
           }),
         ];
 
         expect(gains.generateReport(2021, rows, "FIFO")).toStrictEqual([
           {
-            acquired: "2021-08-13",
-            amount: 0.5,
-            asset: XTZ,
-            basis: 0.5,
-            dispossessed: "2021-08-18",
-            days: 5,
-            gains: 0.5,
-            proceeds: 1,
-            type: TYPE.BUY,
+            "Date Acquired": "8/13/2021",
+            Amount: 0.5,
+            "Asset Name": XTZ,
+            "Cost Basis": 0.5,
+            "Date of Disposition": "8/18/2021",
+            "Holding Period (Days)": 5,
+            "Gains (Losses)": 0.5,
+            Proceeds: 1,
+            "Taz Type": TYPE.BUY,
+            "Tax lot ID": "",
+            "Data Source": "Taz",
           },
         ]);
       });
@@ -297,14 +313,14 @@ describe("generateReport", () => {
             fiat: 2,
             in_amt: 1,
             in_token: XTZ,
-            timestamp: "2021-08-13",
+            timestamp: "2021-08-13T19:00:00Z",
           }),
           csvUtil.createRow({
             type: TYPE.RECEIVE,
             fiat: 3,
             in_amt: 2,
             in_token: XTZ,
-            timestamp: "2021-08-15",
+            timestamp: "2021-08-15T19:00:00Z",
           }),
           csvUtil.createRow({
             type: TYPE.BUY,
@@ -313,32 +329,37 @@ describe("generateReport", () => {
             in_token: "COOL",
             out_amt: 1.5,
             out_token: XTZ,
-            timestamp: "2021-08-18",
+            timestamp: "2021-08-18T19:00:00Z",
           }),
         ];
 
         expect(gains.generateReport(2021, rows, "FIFO")).toStrictEqual([
           {
-            acquired: "2021-08-13",
-            amount: 1,
-            asset: XTZ,
-            basis: 2,
-            dispossessed: "2021-08-18",
-            days: 5,
-            gains: 3,
-            proceeds: 5,
-            type: TYPE.BUY,
+            "Date Acquired": "8/13/2021",
+            Amount: 1,
+            "Asset Name": XTZ,
+            "Cost Basis": 2,
+            "Date of Disposition": "8/18/2021",
+            "Holding Period (Days)": 5,
+            "Gains (Losses)": 3,
+            Proceeds: 5,
+            "Taz Type": TYPE.BUY,
+            "Tax lot ID": "",
+            "Data Source": "Taz",
           },
           {
-            acquired: "2021-08-15",
-            amount: 0.5,
-            asset: XTZ,
-            basis: 1.5,
-            dispossessed: "2021-08-18",
-            days: 3,
-            gains: 1,
-            proceeds: 2.5,
-            type: TYPE.BUY,
+            "Date Acquired": "8/15/2021",
+            Amount: 0.5,
+            "Asset Name": XTZ,
+            "Cost Basis": 1.5,
+            "Date of Disposition": "8/18/2021",
+            "Holding Period (Days)": 3,
+            "Gains (Losses)": 1,
+            Proceeds: 2.5,
+            "Taz Type": TYPE.BUY,
+
+            "Tax lot ID": "",
+            "Data Source": "Taz",
           },
         ]);
       });

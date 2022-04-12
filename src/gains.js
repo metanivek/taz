@@ -10,7 +10,7 @@ const makeLedger = (type, asset, year) => {
     asset,
     year,
     amounts: [],
-    dispossessed: [],
+    disposed: [],
   };
 };
 
@@ -59,16 +59,25 @@ const remove = (ledger, amount, fiat, date, type, calculateGains = true) => {
       const proceeds = subamount * fiat;
       const basis = subamount * top.fiat;
       const gains = proceeds - basis;
-      ledger.dispossessed.push({
-        type,
-        asset: ledger.asset,
-        amount: subamount,
-        acquired: top.date,
-        basis,
-        dispossessed: date,
-        proceeds,
-        gains,
-        days: (Date.parse(date) - Date.parse(top.date)) / (1000 * 3600 * 24),
+      const locale = process.env.LOCALE;
+      const purchaseDate = new Date(top.date).toLocaleDateString(locale);
+      const dateSold = new Date(date).toLocaleDateString(locale);
+      // round as a quick hack for time changes
+      const daysHeld = Math.round(
+        (Date.parse(dateSold) - Date.parse(purchaseDate)) / (1000 * 3600 * 24)
+      );
+      ledger.disposed.push({
+        "Tax lot ID": "", // apparently this makes TurboTax CSV import properly detect short vs long term
+        "Asset Name": ledger.asset,
+        Amount: subamount,
+        "Date Acquired": purchaseDate,
+        "Date of Disposition": dateSold,
+        Proceeds: proceeds,
+        "Cost Basis": basis,
+        "Gains (Losses)": gains,
+        "Holding Period (Days)": daysHeld,
+        "Data Source": "Taz",
+        "Taz Type": type,
       });
     }
 
@@ -182,15 +191,19 @@ const generateReport = (year, collatedRows, type) => {
       console.error("Row: ", row);
     }
   }
-  const dispossessedLedgers = Object.values(ledgers).filter(
-    (l) => l.dispossessed.length > 0
+
+  const disposedLedgers = Object.values(ledgers).filter(
+    (l) => l.disposed.length > 0
   );
 
-  const allRows = dispossessedLedgers
+  const disposedHeader = "Date of Disposition";
+  const allRows = disposedLedgers
     .reduce((acc, l) => {
-      return acc.concat(l.dispossessed);
+      return acc.concat(l.disposed);
     }, [])
-    .sort((a, b) => Date.parse(a.dispossessed) - Date.parse(b.dispossessed));
+    .sort(
+      (a, b) => Date.parse(a[disposedHeader]) - Date.parse(b[disposedHeader])
+    );
 
   return allRows;
 };
