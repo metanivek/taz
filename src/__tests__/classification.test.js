@@ -1,10 +1,13 @@
-import path from "path";
 import classification from "../classification.js";
 import constants from "../constants.js";
-import jsonIO from "../json/io.js";
+import operationsUtils from "./__utils__/operations.js";
+import metadataUtils from "./__utils__/metadata.js";
+
+const { fixtureWithHash } = operationsUtils;
+const { selectFields } = metadataUtils;
 
 const { classifyOperationGroup } = classification;
-const { TYPE, XTZ, OBJKT_ENGLISH_AUCTIONS, OBJKT_MARKETPLACES } = constants;
+const { TYPE, XTZ } = constants;
 
 const ADDR1 = "tzaddress1";
 const ADDR2 = "tzaddress2";
@@ -26,17 +29,6 @@ const TIMESTAMP = "2021-07-08T00:00:00Z";
 const USD_QUOTE = 3;
 const HASH = "opabc123";
 const tez = (amt) => amt * Math.pow(10, 6);
-
-const fixtureWithHash = async (
-  opHash,
-  address = (ops) => ops[0].sender.address
-) => {
-  const filename = path.resolve(
-    path.join("src", "__tests__", "__operations__", `${opHash}.json`)
-  );
-  const ops = await jsonIO.read(filename);
-  return { ops, address: address(ops) };
-};
 
 const makeOperation = ({
   sender = ADDR1,
@@ -90,19 +82,6 @@ const makeTransferValue = ({
     from_: from,
     txs: [{ to_: to, amount, token_id: tokenId }],
   };
-};
-
-// for easier strict equal checks
-const selectFields = (result, fields = ["fees", "in", "out", "type"]) => {
-  return result.map((r) => {
-    const m = r.metadata;
-    for (const key of Object.keys(m)) {
-      if (fields.includes(key) === false) {
-        delete m[key];
-      }
-    }
-    return m;
-  });
 };
 
 describe("response", () => {
@@ -365,72 +344,6 @@ describe("operations for NFTs", () => {
       ]);
     });
 
-    test("objkt.com minter", async () => {
-      const hash = "opLGTP2AcwT2oL3UfxCKTsLd3FVWBS34mdXKq9kK4T6y2iBYQsb";
-      const { ops, address } = await fixtureWithHash(hash);
-
-      expect(selectFields(classifyOperationGroup(address, ops))).toStrictEqual([
-        {
-          fees: 0.069931,
-          in: [
-            {
-              amount: 1,
-              from: "KT1FHcdRnht4L4ttSVeDY8tWvocMQR1xsUCp",
-              to: "tz1N3xSSHguSVLYMCeNG7e3oiDfPnc6FnQip",
-              token: "KT1FHcdRnht4L4ttSVeDY8tWvocMQR1xsUCp",
-              tokenId: "0",
-            },
-          ],
-          out: [],
-          type: TYPE.MINT,
-        },
-      ]);
-    });
-
-    test("fxhash issuer mint v1", async () => {
-      const hash = "ooisS6BK182NTCFzZ7KjFcNkCMdYEnfxsuoT9CbNRyBDE7Z3s2L";
-      const { ops, address } = await fixtureWithHash(hash);
-
-      expect(selectFields(classifyOperationGroup(address, ops))).toStrictEqual([
-        {
-          fees: 0.057327,
-          in: [
-            {
-              amount: 1,
-              from: "KT1AEVuykWeuuFX7QkEAMNtffzwhe1Z98hJS",
-              to: "tz1XDQJPCP53mSgwDZiNphTVKGmDJRsTwWUe",
-              token: "KT1AEVuykWeuuFX7QkEAMNtffzwhe1Z98hJS",
-              tokenId: "4538",
-            },
-          ],
-          out: [],
-          type: TYPE.MINT,
-        },
-      ]);
-    });
-
-    test("fxhash issuer mint v2", async () => {
-      const hash = "oo5TfnjmDEKussfoscbgxc8orXharTCja7KkpXQZcnVgwqxCt34";
-      const { ops, address } = await fixtureWithHash(hash);
-
-      expect(selectFields(classifyOperationGroup(address, ops))).toStrictEqual([
-        {
-          fees: 0.07044,
-          in: [
-            {
-              amount: 1,
-              from: "KT1XCoGnfupWk7Sp8536EfrxcP73LmT68Nyr",
-              to: "tz1XDQJPCP53mSgwDZiNphTVKGmDJRsTwWUe",
-              token: "KT1XCoGnfupWk7Sp8536EfrxcP73LmT68Nyr",
-              tokenId: "6152",
-            },
-          ],
-          out: [],
-          type: TYPE.MINT,
-        },
-      ]);
-    });
-
     test("mooncake mint", async () => {
       const hash = "onoi2yJxc2adhqEQvs2BuMbkwfTn1ytcs69gxNv6VTyuBmSmWju";
       const { ops, address } = await fixtureWithHash(hash);
@@ -546,88 +459,6 @@ describe("operations for NFTs", () => {
           ],
           out: [{ amount: 2.15, token: XTZ, to: marketplace, from: buyer }],
           type: TYPE.TRADE,
-        },
-      ]);
-    });
-
-    test("fxhash mint", async () => {
-      const { ops, address } = await fixtureWithHash(
-        "oneRL8j8ukdZ43hFcjJFKQzBixuoaPJFQE6G4E223dDcokp9T3o"
-      );
-      expect(selectFields(classifyOperationGroup(address, ops))).toStrictEqual([
-        {
-          type: TYPE.TRADE,
-          fees: 0.099446,
-          in: [
-            {
-              amount: 1,
-              tokenId: "153945",
-              token: "KT1KEa8z6vWXDJrVqtMrAeDVzsvxat3kHaCE",
-              from: "KT1AEVuykWeuuFX7QkEAMNtffzwhe1Z98hJS",
-              to: "tz1XDQJPCP53mSgwDZiNphTVKGmDJRsTwWUe",
-            },
-          ],
-          out: [
-            {
-              amount: 0.5,
-              to: "KT1AEVuykWeuuFX7QkEAMNtffzwhe1Z98hJS",
-              from: "tz1XDQJPCP53mSgwDZiNphTVKGmDJRsTwWUe",
-              token: XTZ,
-            },
-          ],
-        },
-      ]);
-    });
-
-    test("fxhash mint your own", async () => {
-      const hash = "ooNauKEauRgb39rG9cmmYaPmZ1brqJPtDVc1PoowCTP9xufFDoC";
-      const { ops, address } = await fixtureWithHash(hash);
-      expect(selectFields(classifyOperationGroup(address, ops))).toStrictEqual([
-        {
-          type: TYPE.TRADE,
-          fees: 0.098946,
-          in: [
-            {
-              amount: 1,
-              tokenId: "163320",
-              token: "KT1KEa8z6vWXDJrVqtMrAeDVzsvxat3kHaCE",
-              from: "KT1AEVuykWeuuFX7QkEAMNtffzwhe1Z98hJS",
-              to: "tz1XDQJPCP53mSgwDZiNphTVKGmDJRsTwWUe",
-            },
-          ],
-          out: [
-            {
-              amount: 0.025,
-              to: "KT1AEVuykWeuuFX7QkEAMNtffzwhe1Z98hJS",
-              from: "tz1XDQJPCP53mSgwDZiNphTVKGmDJRsTwWUe",
-              token: XTZ,
-            },
-          ],
-        },
-      ]);
-    });
-
-    test("randomly common skele mint (receive txn)", async () => {
-      const hash = "ooLR8F3uvh6LdzSZDedkAJuThdRZLtvKa4Z7Bv5Tf2c9aFv12FK";
-      const { ops, address } = await fixtureWithHash(
-        hash,
-        (ops) => ops[2].parameter.value.address
-      );
-      expect(selectFields(classifyOperationGroup(address, ops))).toStrictEqual([
-        {
-          type: TYPE.AIRDROP,
-          fees: 0,
-          in: [
-            {
-              amount: 1,
-              tokenId:
-                "88391099414403497031313350352877093122676801207717095286373137475484852737775",
-              token: "KT1HZVd9Cjc2CMe3sQvXgbxhpJkdena21pih",
-              from: "KT1AvxTNETj3U4b3wKYxkX6CKya1EgLZezv8",
-              to: "tz1TkBRQWgXVC1CbLMj5GgR7LUtGkptJj93t",
-            },
-          ],
-          out: [],
         },
       ]);
     });
@@ -887,38 +718,6 @@ describe("operations for NFTs", () => {
             },
           ],
           type: TYPE.SALE,
-        },
-      ]);
-    });
-
-    test("fxhash", async () => {
-      const hash = "ooDjSAFbV4vWAbhyLzUMTnRdvTgjm29RRAdHYx1y7tTqvTyt8Ny";
-      const { ops, address } = await fixtureWithHash(
-        hash,
-        (ops) => ops[2].target.address
-      );
-      const buyer = "tz1KvV6bWCDeif6bEdh5e5txRufxG3iwRVt4";
-      expect(selectFields(classifyOperationGroup(address, ops))).toStrictEqual([
-        {
-          type: TYPE.SALE,
-          fees: 0,
-          in: [
-            {
-              amount: 0.975,
-              from: buyer,
-              to: "tz1XDQJPCP53mSgwDZiNphTVKGmDJRsTwWUe",
-              token: XTZ,
-            },
-          ],
-          out: [
-            {
-              amount: 1,
-              to: buyer,
-              from: "KT1AEVuykWeuuFX7QkEAMNtffzwhe1Z98hJS",
-              token: "KT1KEa8z6vWXDJrVqtMrAeDVzsvxat3kHaCE",
-              tokenId: "154814",
-            },
-          ],
         },
       ]);
     });
@@ -1194,246 +993,9 @@ describe("operations for NFTs", () => {
   });
 
   describe("auctions", () => {
-    test("objkt.com bid (v1)", async () => {
-      const hash = "onqLakHiJ7jh4eDUkktZZCH6ViYyg3kVakYziTxRtGTKdvvB9jv";
-      const { ops, address } = await fixtureWithHash(hash);
-      expect(selectFields(classifyOperationGroup(address, ops))).toStrictEqual([
-        {
-          type: TYPE.AUCTION_BID,
-          fees: 0.001797,
-          in: [
-            {
-              amount: 1,
-              tokenId: "25029",
-              token: OBJKT_ENGLISH_AUCTIONS[0],
-              from: OBJKT_ENGLISH_AUCTIONS[0],
-              to: "tz1N3xSSHguSVLYMCeNG7e3oiDfPnc6FnQip",
-              pseudo: true,
-            },
-          ],
-          out: [
-            {
-              amount: 1,
-              token: XTZ,
-              to: OBJKT_ENGLISH_AUCTIONS[0],
-              from: "tz1N3xSSHguSVLYMCeNG7e3oiDfPnc6FnQip",
-            },
-          ],
-        },
-      ]);
-    });
-
-    test.todo("objkt.com bid (v2)"); // const hash = "opHdtAnX1oCKt7bn9ufX7NGUvffAQsoKCqvoitjBUeYdNKGjCcb";
-
-    test("objkt.com conclude_auction (v1)", async () => {
-      const hash = "oov2zLtKgbW53SUntEkceGMmf6Jnzk3jcLGyW9VLKmkx3cRDNYC";
-      const { ops, address } = await fixtureWithHash(
-        hash,
-        (ops) => ops[1].parameter.value[0].txs[0]["to_"]
-      );
-      expect(selectFields(classifyOperationGroup(address, ops))).toStrictEqual([
-        {
-          type: TYPE.AUCTION_SETTLE,
-          fees: 0,
-          in: [
-            {
-              amount: 1,
-              tokenId: "441377",
-              token: "KT1RJ6PbjHpwc3M5rw5s2Nbmefwbuwbdxton",
-              from: OBJKT_ENGLISH_AUCTIONS[0],
-              to: "tz1N3xSSHguSVLYMCeNG7e3oiDfPnc6FnQip",
-            },
-          ],
-          out: [
-            {
-              amount: 1,
-              tokenId: "25029",
-              to: OBJKT_ENGLISH_AUCTIONS[0],
-              from: "tz1N3xSSHguSVLYMCeNG7e3oiDfPnc6FnQip",
-              token: OBJKT_ENGLISH_AUCTIONS[0],
-              pseudo: true,
-            },
-          ],
-        },
-      ]);
-    });
-
-    test.todo("objkt.com settle_auction (v2)");
-
     test.todo("versum bid");
 
     test.todo("versum withdraw");
-
-    test("objkt.com outbid (v1)", async () => {
-      const hash = "oo3tYvzNiESN494AWvCmcJxf6L8YmEpxQkzZjEsARLXnojqagRG";
-      const { ops, address } = await fixtureWithHash(
-        hash,
-        (ops) => ops[1].target.address
-      );
-      expect(selectFields(classifyOperationGroup(address, ops))).toStrictEqual([
-        {
-          type: TYPE.AUCTION_OUTBID,
-          fees: 0,
-          in: [
-            {
-              amount: 1020,
-              token: XTZ,
-              from: OBJKT_ENGLISH_AUCTIONS[0],
-              to: "tz1UPB5kDUMnmvrkKaQEjqtYVozNGaWHjVei",
-            },
-          ],
-          out: [],
-        },
-      ]);
-    });
-
-    test.todo("objkt.com outbid (v2)");
-  });
-
-  describe("offers", () => {
-    describe("objkt.com marketplace v1", () => {
-      test("bid (as bidder)", async () => {
-        const hash = "ooFVBeroUstdY7gdjKTpMYcTkZkJPvmi2qxFYzWfSdb6eY39vHR";
-        const { ops, address } = await fixtureWithHash(hash);
-        expect(
-          selectFields(classifyOperationGroup(address, ops))
-        ).toStrictEqual([
-          {
-            fees: 0.000564,
-            type: TYPE.OFFER,
-            in: [
-              {
-                amount: 1,
-                from: OBJKT_MARKETPLACES[0],
-                to: "tz1N1kCfTeEyM3r8wkUfSBDKqvnnZMxGPutK",
-                token: OBJKT_MARKETPLACES[0],
-                tokenId: "142987",
-                pseudo: true,
-              },
-            ],
-            out: [
-              {
-                amount: 0.5,
-                to: OBJKT_MARKETPLACES[0],
-                from: "tz1N1kCfTeEyM3r8wkUfSBDKqvnnZMxGPutK",
-                token: XTZ,
-              },
-            ],
-          },
-        ]);
-      });
-
-      test("retract_bid (as bidder)", async () => {
-        const hash = "oowFBNLRbsRHwMctuQbe1NeGjfEiCUkvcrRiWT24pQUBCUzawe2";
-        const { ops, address } = await fixtureWithHash(hash);
-        expect(
-          selectFields(classifyOperationGroup(address, ops))
-        ).toStrictEqual([
-          {
-            fees: 0.000722,
-            type: TYPE.OFFER_RETRACT,
-            in: [
-              {
-                amount: 99,
-                from: OBJKT_MARKETPLACES[0],
-                to: "tz1gbwXXtKxK2QKJpvLF4JJUybxtHeREqMJH",
-                token: XTZ,
-              },
-            ],
-            out: [
-              {
-                amount: 1,
-                tokenId: "142991",
-                to: OBJKT_MARKETPLACES[0],
-                from: "tz1gbwXXtKxK2QKJpvLF4JJUybxtHeREqMJH",
-                token: OBJKT_MARKETPLACES[0],
-                pseudo: true,
-              },
-            ],
-          },
-        ]);
-      });
-
-      test("fulfill_bid (as bidder)", async () => {
-        const hash = "ooM7US9DhLjrRybuz6HD5yFc1pUU5M7jqbHb1DGnVMp3hC1Fjk7";
-        const { ops, address } = await fixtureWithHash(
-          hash,
-          (ops) => ops[2].parameter.value[0].txs[0]["to_"]
-        );
-        expect(
-          selectFields(classifyOperationGroup(address, ops))
-        ).toStrictEqual([
-          {
-            fees: 0,
-            type: TYPE.OFFER_FULFILL,
-            in: [
-              {
-                amount: 1,
-                tokenId: "0",
-                from: "tz1eiAZ7VvW96eK6VQAjPAMamYS2efQCN19z",
-                to: "tz1N1kCfTeEyM3r8wkUfSBDKqvnnZMxGPutK",
-                token: "KT1WFogjPtbC3wAY2T9cmEY36VQbdKbsA44K",
-              },
-            ],
-            out: [
-              {
-                amount: 1,
-                tokenId: "142987",
-                to: OBJKT_MARKETPLACES[0],
-                from: "tz1N1kCfTeEyM3r8wkUfSBDKqvnnZMxGPutK",
-                token: OBJKT_MARKETPLACES[0],
-                pseudo: true,
-              },
-            ],
-          },
-        ]);
-      });
-
-      test.todo("fulfill_bid (as primary sale)");
-
-      test("fulfill_bid (as secondary sale)", async () => {
-        const hash = "ooryUiTGP12RPtWMVX52LRTrWX4Vc8EAx8TaqieohgjkVdJZ4Xh";
-
-        const { ops, address } = await fixtureWithHash(
-          hash,
-          (ops) => ops[4].target.address
-        );
-        expect(
-          selectFields(classifyOperationGroup(address, ops))
-        ).toStrictEqual([
-          {
-            type: TYPE.SALE,
-            fees: 0,
-            in: [
-              {
-                amount: 0.8,
-                // TODO: is it worth trying to figure out the tz account
-                from: "KT1FvqJwEDWb1Gwc55Jd1jjTHRVWbYKUUpyq",
-                to: "tz1XDQJPCP53mSgwDZiNphTVKGmDJRsTwWUe",
-                token: XTZ,
-              },
-            ],
-            out: [
-              {
-                amount: 1,
-                token: "KT1KEa8z6vWXDJrVqtMrAeDVzsvxat3kHaCE",
-                tokenId: "136686",
-                to: "tz1ccXwq87b1hNktXprs3GZ2BXpaF2KTPAXS",
-                from: "tz1agchaEF9EK3ARhHDeKTQFBzw4CjNkHKEJ",
-              },
-            ],
-          },
-        ]);
-      });
-    });
-
-    describe("objkt.com marketplace v2", () => {
-      test.todo("offer");
-
-      test.todo("retract_offer");
-
-      test.todo("fulfill_offer");
-    });
   });
 
   test("receive airdrop (among multiple recipients)", () => {
