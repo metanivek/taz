@@ -8,16 +8,6 @@ const BURN_ADDR = "tz1burnburnburnburnburnburnburjAYjjX";
 const FXHASH_GENTK = "KT1KEa8z6vWXDJrVqtMrAeDVzsvxat3kHaCE"; // TODO: update when v2 launches
 const COMMON_SKELES = "KT1HZVd9Cjc2CMe3sQvXgbxhpJkdena21pih";
 
-const OBJKT_ENGLISH_AUCTIONS = [
-  "KT1XjcRq5MLAzMKQ3UHsrue2SeU2NbxUrzmU", // v1
-  "KT18p94vjkkHYY3nPmernmgVR7HdZFzE7NAk", // v2
-];
-
-const OBJKT_MARKETPLACES = [
-  "KT1FvqJwEDWb1Gwc55Jd1jjTHRVWbYKUUpyq", // v1
-  "KT1WvzYHCNBvDSdwafTHv7nJ1dWmZ8GCYuuC", // v2
-];
-
 // manually track combination of entrypoint and contracts
 // that are for minting *your own* nfts
 // note: this is different than minting when buying *another* nft
@@ -100,8 +90,6 @@ export default {
   BURN_ADDR,
   FXHASH_GENTK,
   COMMON_SKELES,
-  OBJKT_ENGLISH_AUCTIONS,
-  OBJKT_MARKETPLACES,
   TYPE,
   MINT_ENTRYPOINTS,
   MINT_CONTRACTS,
