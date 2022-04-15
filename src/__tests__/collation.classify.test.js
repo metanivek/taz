@@ -282,6 +282,79 @@ describe("classify", () => {
   });
 
   describe("two-phase transactions", () => {
+    test("send to contract with future tokens then airdrops", () => {
+      const KT = "KT123";
+      const rows = [
+        csvUtil.createRow({
+          type: TYPE.SEND,
+          in_amt: 2,
+          in_token: "FUTURE-XYZ",
+          out_amt: 10,
+          out_token: XTZ,
+          out_token_to: KT,
+          fees: 0.001797,
+          level: 0,
+          op: "hash1",
+          timestamp: "time1",
+        }),
+        csvUtil.createRow({
+          type: TYPE.AIRDROP,
+          in_amt: 1,
+          in_token: "XYZ",
+          in_token_from: KT,
+          level: 1,
+          fees: 0,
+          op: "hash2",
+          timestamp: "time2",
+        }),
+        csvUtil.createRow({
+          type: TYPE.AIRDROP,
+          in_amt: 1,
+          in_token: "XYZ",
+          in_token_from: KT,
+          level: 1,
+          fees: 0,
+          op: "hash3",
+          timestamp: "time3",
+        }),
+      ];
+      expect(collation.classify(rows, ADDRESSES)).toStrictEqual([
+        csvUtil.createRow({
+          type: TYPE.SEND,
+          fees: 0.001797,
+          level: 0,
+          op: "hash1",
+          timestamp: "time1",
+        }),
+        csvUtil.createRow({
+          type: TYPE.BUY,
+          in_amt: 1,
+          in_token: "XYZ",
+          in_token_from: KT,
+          out_amt: 5,
+          out_token: XTZ,
+          out_token_to: KT,
+          level: 1,
+          fees: 0,
+          op: "hash2",
+          timestamp: "time2",
+        }),
+        csvUtil.createRow({
+          type: TYPE.BUY,
+          in_amt: 1,
+          in_token: "XYZ",
+          in_token_from: KT,
+          out_amt: 5,
+          out_token: XTZ,
+          out_token_to: KT,
+          level: 1,
+          fees: 0,
+          op: "hash3",
+          timestamp: "time3",
+        }),
+      ]);
+    });
+
     test("send to contract that airdrops token", () => {
       // default assumes that entire amount of tez is for first airdrop
       // this path does not handle multiple airdrops for one xtz transaction
