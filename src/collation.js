@@ -47,9 +47,11 @@ const classify = (rows, accounts) => {
           if (acc.contractsWithXTZ[kt] === undefined) {
             acc.contractsWithXTZ[kt] = [];
           }
+          const amount = utils.isEmpty(r[H.IN_AMT]) ? 1 : parseInt(r[H.IN_AMT]);
           acc.contractsWithXTZ[kt].push({
             idx,
-            amount: r[H.OUT_AMT],
+            amount,
+            xtzPerUnit: parseFloat(r[H.OUT_AMT]) / amount,
           });
         }
         return acc;
@@ -73,8 +75,8 @@ const classify = (rows, accounts) => {
     r[H.OUT_TOKEN_TO] = undefined;
   };
 
-  const transferOutInfo = (srcRow, destRow) => {
-    destRow[H.OUT_AMT] = srcRow[H.OUT_AMT];
+  const transferOutInfo = (srcRow, destRow, outAmt) => {
+    destRow[H.OUT_AMT] = outAmt ?? srcRow[H.OUT_AMT];
     destRow[H.OUT_TOKEN] = srcRow[H.OUT_TOKEN];
     destRow[H.OUT_TOKEN_ID] = srcRow[H.OUT_TOKEN_ID];
     destRow[H.OUT_TOKEN_TO] = srcRow[H.OUT_TOKEN_TO];
@@ -148,14 +150,20 @@ const classify = (rows, accounts) => {
       // of a pre-payement mint (eg randomly common skeles)
       // we handle this by moving the payment to the time of the
       // token receipt
-      if (contractsWithXTZ[r[H.IN_TOKEN_FROM]]) {
-        // pop xtz sent
-        const xtz = contractsWithXTZ[r[H.IN_TOKEN_FROM]].splice(0, 1)[0];
-        const payRow = acc[xtz.idx];
+      if (contractsWithXTZ[r[H.IN_TOKEN_FROM]]?.length > 0) {
+        const prepay = contractsWithXTZ[r[H.IN_TOKEN_FROM]][0];
+        const payRow = acc[prepay.idx];
+        const inAmt = parseInt(r[H.IN_AMT]);
+        prepay.amount -= inAmt;
 
         r[H.TYPE] = TYPE.BUY;
-        transferOutInfo(payRow, r);
-        clearInAndOutInfo(payRow);
+        transferOutInfo(payRow, r, prepay.xtzPerUnit * inAmt);
+
+        if (prepay.amount <= 0) {
+          // pop since all amount has been consumed
+          contractsWithXTZ[r[H.IN_TOKEN_FROM]].splice(0, 1)[0];
+          clearInAndOutInfo(payRow);
+        }
       }
     } else if (
       t === TYPE.AUCTION_BID ||
