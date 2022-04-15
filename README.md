@@ -30,11 +30,13 @@ blockchain as I can.
 
 Current areas of known limitation:
 
-1. DeFi. Taz most likely does not properly classify/analyze these types of
-   transactions. This is my highest priority area to improve.
+1. DeFi. Outsize of simple XTZ-token swaps, Taz most likely does not properly
+   classify/analyze DeFi transactions like liquidity, staking, etc. This is my
+   highest priority area to improve.
 1. NFT platforms I haven't used. Some _should_ work but I haven't directly tested all.
-1. Custom constracts. I have some ideas for a plugin architecture to support
-   these, but as of now, it is all just vague hand waving motions in my mind.
+1. Custom constracts. Taz has a rudimentary plugin system for special case
+   handling of contracts, but with almost 100k contracts on Tezos, there is lots
+   of room for improvement.
 1. Unknown unknowns. :alien:
 
 ---
